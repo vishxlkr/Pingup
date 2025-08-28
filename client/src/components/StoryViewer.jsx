@@ -1,10 +1,39 @@
-import { BadgeCheck, CloudMoonRain, X } from "lucide-react";
-import React from "react";
+import { BadgeCheck, CloudMoonRain, StepBack, X } from "lucide-react";
+import React, { useEffect, useState } from "react";
 
 const StoryViewer = ({ viewStory, setViewStory }) => {
+   const [progress, setProgress] = useState(0);
+
+   useEffect(() => {
+      let timer, progresInterval;
+      if (viewStory && viewStory.media_type !== "video") {
+         setProgress(0);
+         const duration = 10000; // mili sec
+         const setTime = 100;
+         let elapsed = 0;
+
+         progresInterval = setInterval(() => {
+            elapsed += setTime;
+            setProgress((elapsed / duration) * 100);
+         }, setTime);
+
+         // close story after duration 10 sec
+         timer = setTimeout(() => {
+            setViewStory(null);
+         }, duration);
+      }
+
+      return () => {
+         clearTimeout(timer);
+         clearInterval(progresInterval);
+      };
+   }, [viewStory, setViewStory]);
+
    const handleClose = () => {
       setViewStory(null);
    };
+
+   if (!viewStory) return null;
 
    const renderContent = () => {
       switch (viewStory.media_type) {
@@ -20,6 +49,8 @@ const StoryViewer = ({ viewStory, setViewStory }) => {
          case "video":
             return (
                <video
+                  controls
+                  autoPlay
                   onEnded={() => setViewStory(null)}
                   src={viewStory.media_url}
                   className="max-h-screen  "
@@ -52,9 +83,10 @@ const StoryViewer = ({ viewStory, setViewStory }) => {
          <div className="absolute top-0 left-0 w-full h-1 bg-gray-700">
             <div
                className="h-full bg-white transition-all duration-100 linear"
-               style={{ width: "50" }}
+               style={{ width: `${progress}%` }}
             ></div>
          </div>
+
          {/* user info - top left */}
          <div className="absolute top-4 left-4 flex items-center space-x-3 p-2 px-4 sm:p-4 sm:px-8 backdrop-blur-2xl rounded bg-black">
             <img
