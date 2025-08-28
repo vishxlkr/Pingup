@@ -1,10 +1,10 @@
 import { BadgeCheck, Heart, MessageCircle, Share2 } from "lucide-react";
 import moment from "moment";
-import React from "react";
+import React, { useState } from "react";
 import { dummyUserData } from "../assets/assets";
 
 const PostCard = ({ post }) => {
-   const [likes, setLikes] = useState(post.like_count);
+   const [likes, setLikes] = useState(post.likes_count);
    const currentUser = dummyUserData;
 
    const handleLike = async () => {};
@@ -55,11 +55,11 @@ const PostCard = ({ post }) => {
          </div>
 
          {/* actions */}
-         <div className="flex items-center gap-4 text-gray-600 text-sm pt-2 border-t border-gray-300">
+         <div className="flex items-center gap-4 text-gray-600 text-sm pt-2 border-t border-gray-300 ">
             <div className="flex items-center gap-1">
                <Heart
                   className={`w-4 h-4 cursor-pointer ${
-                     setLikes.includes(currentUser._id) &&
+                     likes.includes(currentUser._id) &&
                      "text-red-500 fill-red-500"
                   } `}
                   onClick={handleLike}
