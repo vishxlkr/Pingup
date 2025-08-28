@@ -20,7 +20,16 @@ const Messages = () => {
                      key={user._id}
                      className="max-w-xl flex flex-wrap gap-5 p-6 bg-white shadow rounded-md"
                   >
-                     <img src={user.profile_picture} alt="" className="rounded-full size-12 mx-auto"} />
+                     <img
+                        src={user.profile_picture}
+                        alt=""
+                        className="rounded-full size-12 mx-auto"
+                     />
+                     <div>
+                        <p>{user.full_name}</p>
+                        <p>@{user.username}</p>
+                        <p>{user.bio}</p>
+                     </div>
                   </div>
                ))}
             </div>
