@@ -27,7 +27,6 @@ const Layout = () => {
                onClick={() => setSidebarOpen(true)}
             />
          )}
-         <Loading />
       </div>
    ) : (
       <Loading />
