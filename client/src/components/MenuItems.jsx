@@ -26,5 +26,6 @@ const MenuItems = ({ setSidebarOpen }) => {
       </div>
    );
 };
+asdf;
 
 export default MenuItems;
