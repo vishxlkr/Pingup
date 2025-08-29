@@ -1,13 +1,8 @@
 import React from "react";
-import {
-   Users,
-   UserPlus,
-   UserCheck,
-   UserRoundPen,
-   MesssageSquare,
-} from "lucide-react";
 
 import { useNavigate } from "react-router-dom";
+import { UserCheck, UserPlus, UserRoundPen, Users } from "lucide-react";
+
 import {
    dummyConnectionsData as connections,
    dummyFollowersData as followers,
@@ -31,9 +26,24 @@ const Connections = () => {
             {/* title */}
             <div className="mb-8">
                <h1 className="text-3xl font-bold text-slate-900 mb-2">
-                  Messages
+                  Connections
                </h1>
-               <p className="text-slate-600">Talk to your friends and family</p>
+               <p className="text-slate-600">
+                  Manage your network and discover new connections
+               </p>
+            </div>
+
+            {/* counts - follower , following ..... */}
+            <div className="mb-8 flex flex-wrap gap-6">
+               {dataArray.map((item, index) => (
+                  <div
+                     key={index}
+                     className="flex flex-col items-center justify-center gap-1 border h-20 w-40 border-gray-200 bg-white shadow rounded-md"
+                  >
+                     <b>{item.value.length}</b>
+                     <p className="text-slate-600">{item.label}</p>
+                  </div>
+               ))}
             </div>
          </div>
       </div>

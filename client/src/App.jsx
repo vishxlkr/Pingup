@@ -23,7 +23,9 @@ const App = () => {
                <Route index element={<Feed />} />
                <Route path="messages" element={<Messages />} />
                <Route path="messages/:userId" element={<ChatBox />} />
-               <Route path="connections/:userId" element={<Connections />} />
+
+               <Route path="connections" element={<Connections />} />
+
                <Route path="discover/:userId" element={<Discover />} />
                <Route path="profile/:userId" element={<Profile />} />
                <Route path="profile/:profileId" element={<Profile />} />
