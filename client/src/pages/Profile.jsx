@@ -6,6 +6,7 @@ import {
    dummyUserData,
 } from "../assets/assets";
 import Loading from "../components/Loading";
+import UserProfileInfo from "../components/UserProfileInfo";
 
 const Profile = () => {
    const { profileId } = useParams();
@@ -39,6 +40,12 @@ const Profile = () => {
                   )}
                </div>
                {/* user info */}
+               <UserProfileInfo
+                  user={user}
+                  posts={posts}
+                  profileId={profileId}
+                  setShowEdit={setShowEdit}
+               />
             </div>
          </div>
       </div>
