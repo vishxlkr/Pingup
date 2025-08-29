@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { dummyConnectionsData, dummyPostsData } from "../assets/assets";
+import {
+   dummyConnectionsData,
+   dummyPostsData,
+   dummyUserData,
+} from "../assets/assets";
 import Loading from "../components/Loading";
 
 const Profile = () => {
@@ -11,7 +15,7 @@ const Profile = () => {
    const [showEdit, setShowEdit] = useState(false);
 
    const fetchUser = async () => {
-      setUser(dummyConnectionsData);
+      setUser(dummyUserData);
       setPosts(dummyPostsData);
    };
 
@@ -26,7 +30,13 @@ const Profile = () => {
             <div className="bg-white rounded-2xl shadow overflow-hidden">
                {/* cover photo */}
                <div className="h-40 md:h-56 bg-gradient-to-r from-indigo-200 via-purple-200 to-pink-200">
-                  {user.cover_photo && <img src={user.cover_photo} alt="" />}
+                  {user.cover_photo && (
+                     <img
+                        src={user.cover_photo}
+                        className="object-cover w-full h-full "
+                        alt="cover"
+                     />
+                  )}
                </div>
                {/* user info */}
             </div>
